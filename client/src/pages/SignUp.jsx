@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
 export const SignUp = () => {
   const [formData, setFormData] = useState({});
