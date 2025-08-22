@@ -71,11 +71,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowClient");
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapGet("/", () => "Task Manager API is running...");
-app.UseCors("AllowClient");
 app.MapControllers();
 
 app.Run();

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 export const SignUp = () => {
   const [formData, setFormData] = useState({});
@@ -19,7 +20,8 @@ export const SignUp = () => {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch("/api/auth/signup", {
+      const API = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${API}/api/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -30,6 +32,8 @@ export const SignUp = () => {
       }
       setLoading(false);
       if(res.ok){
+ dispatch(signInSucess(data));
+    toast.success("Signed in successfully!");
         navigate("/sign-in");
       }
     } catch (error) {

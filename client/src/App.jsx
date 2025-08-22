@@ -9,12 +9,15 @@ import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreateTask from "./pages/CreateTask";
 import UpdateTask from "./pages/UpdateTask";
 import ScrollToTop from "./components/ScrollToTop";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <Header />
+       <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
