@@ -1,0 +1,22 @@
+# .NET build artifacts
+backend/bin/
+backend/obj/
+
+# Node.js dependencies
+client/node_modules/
+client/.vite/
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+# Build outputs
+bin/
+obj/
+*.dll
+*.pdb
+
+# Node modules
+client/node_modules
