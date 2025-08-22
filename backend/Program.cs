@@ -25,7 +25,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 
 // Configure JWT Authentication
-var key = Encoding.ASCII.GetBytes("TestSecretKey2048!"); 
+var key = Encoding.ASCII.GetBytes("TestSecretKey2048!");
 
 builder.Services.AddAuthentication(options =>
 {
@@ -41,6 +41,17 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = false,
         ValidateAudience = false
     };
+});
+// cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowClient",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
 });
 
 builder.Services.AddAuthorization(options =>
@@ -64,7 +75,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapGet("/", () => "Task Manager API is running...");
-
+app.UseCors("AllowClient");
 app.MapControllers();
 
 app.Run();
