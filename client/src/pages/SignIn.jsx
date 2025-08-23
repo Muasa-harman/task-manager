@@ -34,6 +34,7 @@ export const SignIn = () => {
         dispatch(signInFailure(data.message));
       }
       if (res.ok) {
+        localStorage.setItem("token", data.token);
         dispatch(signInSucess(data));
         navigate("/");
       }
