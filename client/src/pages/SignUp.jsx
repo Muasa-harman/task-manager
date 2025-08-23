@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SignUp = () => {
   const [formData, setFormData] = useState({});
@@ -30,8 +31,8 @@ export const SignUp = () => {
       }
       setLoading(false);
       if(res.ok){
- dispatch(signInSucess(data));
-    toast.success("Signed in successfully!");
+
+    toast.success(data.message || "Account created!");
         navigate("/sign-in");
       }
     } catch (error) {
