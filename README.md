@@ -25,6 +25,9 @@ Make sure you have the following installed:
 git clone https://github.com/Muasa-harman/task-manager.git.
 cd TaskManager
 
+env
+VITE_API_URL=http://localhost:5000
+
 Backend Setup (TaskApi)
 cd backend
 dotnet restore
