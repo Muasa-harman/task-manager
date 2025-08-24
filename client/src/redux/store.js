@@ -2,18 +2,22 @@ import {configureStore,combineReducers} from "@reduxjs/toolkit";
 import userReducer from "./user/userSlice";
 import {persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import persistStore from "redux-persist/lib/persistStore";
+import { persistStore } from 'redux-persist';
+import taskReducer from "./task/taskSlice";
+// import persistStore from "redux-persist/lib/persistStore";
 import themeReducer from "./theme/themeSlice";
 
 const rootReducer = combineReducers({
     user: userReducer,
     theme: themeReducer,
+    task: taskReducer,
 });
 
 const persistConfig = {
     key: 'root',
     storage,
     version:1,
+    // blacklist: ["task"],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

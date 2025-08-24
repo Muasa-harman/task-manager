@@ -12,7 +12,7 @@ namespace TaskApi.Services
 
         public UserService(IConfiguration config)
         {
-            _key = config.GetValue<string>("Jwt:Key") ?? "mysupersecretkeyformyjwtwithatleast32chars!!";
+            _key = config.GetValue<string>("Jwt:Key") ?? "secretkeyformyjwtwithatleast32chars!!";
         }
 
         private readonly List<(string Email, string Password, string Role)> demoUsers = new()

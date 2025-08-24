@@ -43,7 +43,9 @@ export const createTask = (taskData) => async (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(taskData),
+      
     });
+    console.log("token generated", token);
 
     const data = await res.json();
 

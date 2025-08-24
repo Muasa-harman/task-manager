@@ -20,7 +20,7 @@ const CreateTask = () => {
     dispatch(createTask(newTask))
       .unwrap()
       .then(() => {
-        alert("✅ Task created successfully!");
+        alert(" Task created successfully!");
         setNewTask({
           title: "",
           description: "",

@@ -8,6 +8,10 @@ using TaskApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Load JWT key from appsettings.json
+var jwtKey = builder.Configuration["Jwt:Key"] ?? throw new Exception("JWT Key not found");
+
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -25,7 +29,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 
 // Configure JWT Authentication
-var key = Encoding.ASCII.GetBytes("TestSecretKey2048!");
+var key = Encoding.ASCII.GetBytes(jwtKey);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -38,8 +42,11 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = false,
-        ValidateAudience = false
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        ClockSkew = TimeSpan.Zero
     };
 });
 // cors
